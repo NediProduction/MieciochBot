@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('suggestion')
+		.setName('suggest')
 		.setDescription('Dodaj sugestie.')
 		.addStringOption(option => option.setName('treść').setDescription('Napisz swoją sugestię.').setRequired(true)),
 	async execute(interaction) {

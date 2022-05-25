@@ -32,13 +32,14 @@ module.exports = {
 			if (user) {
 				const member = interaction.guild.members.cache.get(user.id);
 				const roles = member.roles.cache.sort((a, b) => b.position - a.position).map(role => role.toString()).slice(0, -1);
+				const guildRoles = member.guild.roles.cache.map(role => role.toString()).slice(0, -1).length;
 				const embed = new MessageEmbed()
 					.setColor('#2f3136')
 					.setAuthor({ name: `${user.tag} - Informacje`, iconURL: user.displayAvatarURL() })
 					.setThumbnail(user.displayAvatarURL())
 					.addFields(
 						{ name: 'Pseudonim:', value: `${member}` },
-						{ name: `Rangi: [${roles.length}/${member.guild.roles.cache.size}]`, value: `${roles}` },
+						{ name: `Rangi: [${roles.length}/${guildRoles}]`, value: `${roles}` },
 						{ name: 'Członek Serwera od:', value: `<t:${parseInt(member.joinedTimestamp / 1000)}:f>` },
 						{ name: 'Użytkonik Discorda od:', value: `<t:${parseInt(user.createdTimestamp / 1000)}:f>` },
 					)
@@ -47,13 +48,14 @@ module.exports = {
 			} else {
 				const member = interaction.guild.members.cache.get(interaction.user.id);
 				const roles = member.roles.cache.sort((a, b) => b.position - a.position).map(role => role.toString()).slice(0, -1);
+				const guildRoles = member.guild.roles.cache.map(role => role.toString()).slice(0, -1).length;
 				const embed = new MessageEmbed()
 					.setColor('#2f3136')
 					.setAuthor({ name: `${interaction.user.tag} - Informacje`, iconURL: interaction.user.displayAvatarURL() })
 					.setThumbnail(interaction.user.displayAvatarURL())
 					.addFields(
 						{ name: 'Pseudonim:', value: `${member}` },
-						{ name: `Rangi: [${roles.length}/${member.guild.roles.cache.size}]`, value: `${roles}` },
+						{ name: `Rangi: [${roles.length}/${guildRoles}]`, value: `${roles}` },
 						{ name: 'Członek Serwera od:', value: `<t:${parseInt(member.joinedTimestamp / 1000)}:f>` },
 						{ name: 'Użytkonik Discorda od:', value: `<t:${parseInt(interaction.user.createdTimestamp / 1000)}:f>` },
 					)
