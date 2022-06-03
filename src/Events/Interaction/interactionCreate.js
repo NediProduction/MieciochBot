@@ -4,7 +4,7 @@ const chalk = require('chalk');
 module.exports = {
 	name: 'interactionCreate',
 	async execute(interaction, client) {
-		if (!interaction.isCommand()) return;
+		if (!interaction.isCommand() && !interaction.isContextMenu()) return;
 
 		const command = client.commands.get(interaction.commandName);
 
