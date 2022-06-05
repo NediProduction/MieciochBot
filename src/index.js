@@ -14,8 +14,8 @@ const commandFolders = readdirSync(__dirname + '/Commands');
 	for (const file of functions) {
 		require(__dirname + `/Functions/${file}`)(client);
 	}
-	client.handleEvents(eventFolders, __dirname + '/Events');
-	client.handleCommands(commandFolders, __dirname + '/Commands');
-	client.dbConnect();
-	client.login(process.env.DISCORD_TOKEN);
+	await client.handleEvents(eventFolders, __dirname + '/Events');
+	await client.handleCommands(commandFolders, __dirname + '/Commands');
+	await client.dbConnect();
+	await client.login(process.env.DISCORD_TOKEN);
 })();

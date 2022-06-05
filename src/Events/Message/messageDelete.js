@@ -1,9 +1,11 @@
 const { MessageEmbed, WebhookClient } = require('discord.js');
+const { guildID } = require(__dirname + '/../../Config/config.json');
 
 module.exports = {
 	name: 'messageDelete',
 	async execute(message) {
 		if (message.author.bot) return;
+		if (message.guild.id !== guildID) return;
 
 		const Count = 1012;
 		const Deleted = message.content.slice(0, Count) + (message.content.length > Count ? ' [...]' : '');
