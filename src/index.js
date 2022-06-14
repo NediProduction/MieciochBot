@@ -3,12 +3,16 @@ const { readdirSync } = require('node:fs');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 client.commands = new Collection();
+client.buttons = new Collection();
+client.dropdowns = new Collection();
 
 require('dotenv').config();
 
 const functions = readdirSync(__dirname + '/Functions').filter(file => file.endsWith('.js'));
 const eventFolders = readdirSync(__dirname + '/Events');
 const commandFolders = readdirSync(__dirname + '/Commands');
+const buttonFolders = readdirSync(__dirname + '/Buttons');
+const selectFolders = readdirSync(__dirname + '/Dropdowns');
 
 (async () => {
 	for (const file of functions) {
@@ -16,6 +20,8 @@ const commandFolders = readdirSync(__dirname + '/Commands');
 	}
 	await client.handleEvents(eventFolders, __dirname + '/Events');
 	await client.handleCommands(commandFolders, __dirname + '/Commands');
+	await client.handleButtons(buttonFolders, __dirname + '/Buttons');
+	await client.handleDropdowns(selectFolders, __dirname + '/Dropdowns');
 	await client.dbConnect();
 	await client.login(process.env.DISCORD_TOKEN);
 })();

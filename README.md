@@ -1,3 +1,5 @@
+# Mięcioch
+
 ## Installation
 
 ```sh

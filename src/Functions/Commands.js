@@ -2,7 +2,7 @@ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const { readdirSync } = require('node:fs');
 const chalk = require('chalk');
-const { clientID, guildID } = require(__dirname + '/../Config/config.json');
+const config = require(__dirname + '/../Config/config.json');
 
 module.exports = (client) => {
 	client.handleCommands = async (commandFolders, path) => {
@@ -21,7 +21,7 @@ module.exports = (client) => {
 		(async () => {
 			try {
 				console.log(chalk.yellow.bold('[CLIENT]: Started refreshing application (/) commands.'));
-				await rest.put(Routes.applicationGuildCommands(clientID, guildID), {
+				await rest.put(Routes.applicationGuildCommands(config.client.id, config.guild.id), {
 					body: client.commandArray,
 				});
 				console.log(chalk.green.bold('[CLIENT]: Successfully reloaded application (/) commands.'));

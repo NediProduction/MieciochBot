@@ -5,7 +5,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('clear')
 		.setDescription('Usuń określoną ilość wiadomości z kanału.')
-		.addNumberOption(option => option.setName('ilość').setDescription('Wybierz ilość wiadomośći do usunięcia.').setRequired(true))
+		.addNumberOption(option => option.setName('ilość').setDescription('Wybierz ilość wiadomości do usunięcia.').setRequired(true))
 		.addUserOption(option => option.setName('użytkownik').setDescription('Wybierz użytkownika którego wiadomości mają zostać usunięte.')),
 	async execute(interaction) {
 		const Amount = interaction.options.getNumber('ilość');
