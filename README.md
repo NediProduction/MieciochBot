@@ -2,6 +2,6 @@
 
 ## Installation
 
-```sh
+```node
 npm install
 ```

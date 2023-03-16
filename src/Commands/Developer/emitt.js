@@ -1,9 +1,11 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
+	developer: true,
 	data: new SlashCommandBuilder()
 		.setName('emitt')
-		.setDescription('Emiter zdarzeń.')
+		.setDescription('Event emitter. (Developer)')
+		.setDescriptionLocalizations({ pl: 'Emiter zdarzeń. (Developer)' })
 		.addStringOption(option =>
 			option.setName('użytkownik')
 				.setDescription('Wydarzenia dla członków serwera.')
@@ -11,7 +13,9 @@ module.exports = {
 				.addChoices(
 					{ name: 'guildMemberAdd', value: 'guildMemberAdd' },
 					{ name: 'guildMemberRemove', value: 'guildMemberRemove' },
-				)),
+				))
+		.setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
+		.setDMPermission(false),
 	async execute(interaction, client) {
 		const choices = interaction.options.getString('użytkownik');
 

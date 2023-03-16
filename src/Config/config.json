@@ -1,13 +1,14 @@
 {
-    "ownersBot": ["838095699169378325","541260550751911948","338814818939305984"],
-    "teamName": "Rodzynka Entertainment",
-    "status": "Ciąg dalszy nastąpi...",
+  "developers": "838095699169378325",
+  "teamName": "Rodzynka Production",
+  "status": "Ciąg dalszy nastąpi...",
 
-	"client": {
-		"id": "877897633681793095",
-		"secret": "bUqIu29nLZFzl21CjN3HmR7_smj1PU1K"
-	},
-	"guild": {
-		"id": "984277200884863098"
-	}
+  "client": {
+    "id": "877897633681793095",
+    "secret": "bUqIu29nLZFzl21CjN3HmR7_smj1PU1K",
+    "color": "interaction.guild.members.me.roles.highest.hexColor"
+  },
+  "guild": {
+    "id": "1041427283895910432"
+  }
 }

@@ -1,27 +1,23 @@
-const { Client, Collection, Intents } = require('discord.js');
-const { readdirSync } = require('node:fs');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-
-client.commands = new Collection();
-client.buttons = new Collection();
-client.dropdowns = new Collection();
-
 require('dotenv').config();
+const { Client, GatewayIntentBits, Partials, Collection } = require('discord.js');
+const { Guilds, GuildMembers, GuildMessages, GuildMessageReactions, GuildPresences, MessageContent } = GatewayIntentBits;
+const { User, Message, GuildMember, ThreadMember } = Partials;
 
-const functions = readdirSync(__dirname + '/Functions').filter(file => file.endsWith('.js'));
-const eventFolders = readdirSync(__dirname + '/Events');
-const commandFolders = readdirSync(__dirname + '/Commands');
-const buttonFolders = readdirSync(__dirname + '/Buttons');
-const selectFolders = readdirSync(__dirname + '/Dropdowns');
+const client = new Client({
+	shards: 'auto',
+	restTimeOffset: 0,
+	intents: [Guilds, GuildMembers, GuildMessages, GuildMessageReactions, GuildPresences, MessageContent],
+	partials: [User, Message, GuildMember, ThreadMember],
+});
 
-(async () => {
-	for (const file of functions) {
-		require(__dirname + `/Functions/${file}`)(client);
-	}
-	await client.handleEvents(eventFolders, __dirname + '/Events');
-	await client.handleCommands(commandFolders, __dirname + '/Commands');
-	await client.handleButtons(buttonFolders, __dirname + '/Buttons');
-	await client.handleDropdowns(selectFolders, __dirname + '/Dropdowns');
-	await client.dbConnect();
-	await client.login(process.env.DISCORD_TOKEN);
-})();
+client.config = require('./Config/config.json');
+client.commands = new Collection();
+client.subCommands = new Collection();
+client.events = new Collection();
+client.buttons = new Collection();
+client.selectMenus = new Collection();
+
+const { loadEvents } = require('./Handlers/Events.js');
+loadEvents(client);
+
+client.login(process.env.DISCORD_TOKEN);
