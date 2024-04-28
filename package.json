@@ -10,14 +10,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RodzynkaProduction/MieciochBot.git"
+    "url": "git+https://github.com/NediProduction/MięciochBot.git"
   },
+  "keywords": [
+    "Discord",
+    "Bot",
+    "Music",
+    "Giveaway",
+    "Level",
+    "Logging"
+  ],
   "author": "Michał \"Nedi\" Szwindowski",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/RodzynkaProduction/MieciochBot/issues"
+    "url": "https://github.com/NediProduction/MięciochBot/issues"
   },
-  "homepage": "https://github.com/RodzynkaProduction/MieciochBot#readme",
+  "homepage": "https://github.com/NediProduction/MięciochBot#readme"
   "dependencies": {
     "ascii-table": "^0.0.9",
     "canvacord": "^5.4.8",
